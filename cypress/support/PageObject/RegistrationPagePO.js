@@ -19,7 +19,7 @@ class RegistrationPage {
         return cy.get('#mat-select-2')
     }
     get listboxQuestions() {
-        return cy.get('#mat-option-4 > .mat-option-text')
+        return cy.get('#mat-option-3')
     }
 
     registerFormSubmission() {
