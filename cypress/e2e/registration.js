@@ -8,7 +8,6 @@ describe('Registration test', () => {
     beforeEach(() => {
         HomePagePO.goHomePage()
         HomePagePO.goAccountPage()
-        // cy.wait(10000)
         LoginPagePO.goToRegistartionPage()
 
     })

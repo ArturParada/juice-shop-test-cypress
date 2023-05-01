@@ -16,20 +16,11 @@ class RegistrationPage {
         return cy.get("#registerButton")
     }
     get dropListQuestion() {
-        return cy.get('.mat-form-field-type-mat-select > .mat-form-field-wrapper > .mat-form-field-flex > .mat-form-field-infix')
+        return cy.get('#mat-select-2')
     }
     get listboxQuestions() {
         return cy.get('#mat-option-4 > .mat-option-text')
     }
-    
-
-    // selectQuestion(){
-    //     this.listboxQuestions.then($els=>{
-    //         els.forEach(element => {
-
-    //         });
-    //     })
-    // }
 
     registerFormSubmission() {
         let randomString = Math.random().toString(36).substring(2)
