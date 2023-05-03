@@ -15,26 +15,33 @@ class RegistrationPage {
     get registerBtn() {
         return cy.get("#registerButton")
     }
-    get dropListQuestion() {
+    get dropListQuestions() {
         return cy.get('#mat-select-2')
     }
-    get listboxQuestions() {
+    get selectQuestion() {
         return cy.get('#mat-option-3')
     }
+    get weakPasswordError() {
+        return cy.get('#mat-error-9')
+    }
+    weakPasswordErrorAssertion() {
+        this.weakPasswordError.should("be.visible")
+    }
 
-    registerFormSubmission() {
-        let randomString = Math.random().toString(36).substring(2)
+    registerFormSubmission(password, repeatPassword) {
+        const randomString = Math.random().toString(36).substring(2)
         const email = "auto_" + randomString + randomString + "@gmail.com"
-        const password = "Password1"
         const securityAnswer = "Test"
 
         this.emailInput.type(email)
         this.paswword.type(password)
-        this.repeatPassword.type(password)
+        this.repeatPassword.type(repeatPassword)
         this.asnwer.type(securityAnswer)
-        this.dropListQuestion.click()
-        this.listboxQuestions.click()
-        this.registerBtn.click()
+        this.dropListQuestions.click()
+        this.selectQuestion.click()
+        if (password.length > 5) {
+            this.registerBtn.click()
+        }
 
     }
 
