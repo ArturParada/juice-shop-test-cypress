@@ -1,4 +1,7 @@
 class RegistrationPage {
+    constructor() {
+        this.emailData = []
+    }
 
     get emailInput() {
         return cy.get("#emailControl")
@@ -32,6 +35,7 @@ class RegistrationPage {
         const randomString = Math.random().toString(36).substring(2)
         const email = "auto_" + randomString + randomString + "@gmail.com"
         const securityAnswer = "Test"
+        this.emailData.push(email)
 
         this.emailInput.type(email)
         this.paswword.type(password)
