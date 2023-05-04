@@ -28,7 +28,6 @@ describe('Registration test', () => {
     //This will only pass when you execution previous test case. Logindata method use emails recaived in prevoius test cases
     it('Create a new account with weak password credentials', () => {
         LoginPagePO.loginData("test123$")
-
     });
 });
 
