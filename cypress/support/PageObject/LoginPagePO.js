@@ -16,6 +16,14 @@ class LoginPage {
     get loginBtn() {
         return cy.get("#loginButton")
     }
+    // loginData2(password) {
+    //     const emailInput = cy.get('#email')
+    //     const passwordInput = cy.get('#password')
+    //     emailInput.type(RegistrationPagePO.emailData[0])
+    //     passwordInput.type(password)
+    //     this.loginBtn.click()
+    // }
+
     loginData(password) {
         this.emailInput.type(RegistrationPagePO.emailData[0])
         console.log(RegistrationPagePO.emailData);
