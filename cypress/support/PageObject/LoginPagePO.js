@@ -16,13 +16,6 @@ class LoginPage {
     get loginBtn() {
         return cy.get("#loginButton")
     }
-    // loginData2(password) {
-    //     const emailInput = cy.get('#email')
-    //     const passwordInput = cy.get('#password')
-    //     emailInput.type(RegistrationPagePO.emailData[0])
-    //     passwordInput.type(password)
-    //     this.loginBtn.click()
-    // }
 
     loginData(password) {
         this.emailInput.type(RegistrationPagePO.emailData[0])
@@ -30,6 +23,24 @@ class LoginPage {
         this.passwordInput.type(password)
         this.loginBtn.click()
 
+    }
+    takeDataFromFixtureLoginDataJson() {
+        cy.fixture('loginData.json').then((loginData) => {
+            const newLoginData = Cypress._.merge(loginData, {
+                email: RegistrationPagePO.emailData[0],
+                name: "artur"
+            });
+
+            cy.wrap(newLoginData).as('newLoginData');
+        });
+    }
+    loginDataFromJson(password) {
+        cy.get('@newLoginData').then((newLoginData) => {
+            // cy.log(`Email: ${newLoginData.email}`);
+            this.emailInput.type(newLoginData.email)
+            this.passwordInput.type(password)
+            this.loginBtn.click()
+        });
     }
     goToRegistartionPage() {
         this.newAccountBtn.click({ force: true })

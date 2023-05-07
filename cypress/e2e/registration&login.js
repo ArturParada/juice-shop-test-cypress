@@ -17,15 +17,7 @@ describe('Registration test', () => {
         if (counter <= 2) {
             LoginPagePO.goToRegistartionPage()
         }
-        /// modification loginData.json file, here I use lodash library.I take new email adres from RegistrationPagePO.emailData[0] 
-        cy.fixture('loginData.json').then((loginData) => {
-            const newLoginData = Cypress._.merge(loginData, {
-                email: RegistrationPagePO.emailData[0],
-                name: "artur"
-            });
-
-            cy.wrap(newLoginData).as('newLoginData');
-        });
+        LoginPagePO.takeDataFromFixtureLoginDataJson()
     })
     it('Create a new account with the correct credentials', () => {
         RegistrationPagePO.registerFormSubmission(correctPass, correctPass)
@@ -43,12 +35,9 @@ describe('Registration test', () => {
     });
     //This will only pass when you execution previous test case. Logindata method use emails recaived in prevoius test cases
     it('Login with an email from data which was changed in file loginData.json', () => {
-        cy.get('@newLoginData').then((newLoginData) => {
-            cy.log(`Email: ${newLoginData.email}`);
-            cy.log(`Name: ${newLoginData.name}`);
-            cy.log(`Name: ${newLoginData.body}`);
+        LoginPagePO.loginDataFromJson(correctPass)
+        HomePagePO.assertCorrectValueItemsInBasketOnFirstLogin()
 
-        });
     });
 });
 
