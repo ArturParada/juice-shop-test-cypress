@@ -24,21 +24,21 @@ class LoginPage {
         this.loginBtn.click()
 
     }
-    takeDataFromFixtureLoginDataJson() {
+    takeDataFromFixtureLoginDataJsonAndOverwritte() {
         cy.fixture('loginData.json').then((loginData) => {
             const newLoginData = Cypress._.merge(loginData, {
                 email: RegistrationPagePO.emailData[0],
-                name: "artur"
             });
 
             cy.wrap(newLoginData).as('newLoginData');
         });
     }
-    loginDataFromJson(password) {
+    loginDataFromJson() {
         cy.get('@newLoginData').then((newLoginData) => {
-            // cy.log(`Email: ${newLoginData.email}`);
+            cy.log(`Email: ${newLoginData.email}`);
+            cy.log(`Email: ${newLoginData.password}`);
             this.emailInput.type(newLoginData.email)
-            this.passwordInput.type(password)
+            this.passwordInput.type(newLoginData.password)
             this.loginBtn.click()
         });
     }
