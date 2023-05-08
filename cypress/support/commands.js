@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("selectAllProduct", quantity => {
+    cy.xpath('//button[@aria-label="Add to Basket"]').each(($product, index) => {
+        cy.wrap($product).click()
+
+    })
+    cy.get('span.fa-layers-counter').should("contain", quantity)
+})

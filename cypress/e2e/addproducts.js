@@ -21,12 +21,8 @@ describe('Registration test', () => {
         LoginPagePO.loginData("test123$")
         HomePagePO.assertCorrectValueItemsInBasketOnFirstLogin()
 
-
-        cy.xpath('//button[@aria-label="Add to Basket"]').each(($product, index) => {
-            cy.wrap($product).click()
-            // cy.wait(1000) // Dodaj pauzę, aby poczekać na ewentualne komunikaty związane z dodaniem produktu do koszyka.
-            // cy.log(`Dodano do koszyka produkt nr ${index + 1}`) // Wyświetl log z numerem dodanego produktu.
-        })
+        //Here I'm use command.js
+        cy.selectAllProduct(11)
     })
 
 });
