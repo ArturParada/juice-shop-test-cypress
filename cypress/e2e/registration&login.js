@@ -19,7 +19,7 @@ describe('Registration test', () => {
         }
 
         //Here I have overwritten the email in loginData.json using the email generated in previous test cases, the password was taken from json too. I know this is not good practice, but I  trained in overwriting json.file
-        LoginPagePO.takeDataFromFixtureLoginDataJson()
+        LoginPagePO.takeDataFromFixtureLoginDataJsonAndOverwritte()
     })
     it('Create a new account with the correct credentials', () => {
         RegistrationPagePO.registerFormSubmission(correctPass, correctPass)
@@ -41,5 +41,11 @@ describe('Registration test', () => {
         HomePagePO.assertCorrectValueItemsInBasketOnFirstLogin()
 
     });
+    it("Add all product to the basket", () => {
+        cy.get('//button[@aria-label="Add to Basket"]').each(($product) => {
+            wrap($product).click()
+        })
+    })
+
 });
 
