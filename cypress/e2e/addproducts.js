@@ -12,7 +12,7 @@ describe('Registration test', () => {
     //     HomePagePO.goHomePage()
     //     HomePagePO.goAccountPage()
     // })
-    it("Add all product to the basket", () => {
+    it("Registration, Login and Add all product to the basket", () => {
         HomePagePO.goHomePage()
         HomePagePO.goAccountPage()
         LoginPagePO.goToRegistartionPage()
