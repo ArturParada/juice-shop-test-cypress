@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("selectAllProduct", quantityOfProduct => {
-    cy.xpath('//button[@aria-label="Add to Basket"]').each(($product, index) => {
+    cy.xpath('//button[@aria-label="Add to Basket"]').each(($product) => {
         cy.wrap($product).click()
 
     })

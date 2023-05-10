@@ -32,7 +32,7 @@ describe('Registration test', () => {
     });
     //This will only pass when you execution previous test case. Logindata method use emails recaived in prevoius test cases
     it('Login with email from earlier test', () => {
-        LoginPagePO.loginData("test123$")
+        LoginPagePO.loginData(correctPass)
         HomePagePO.assertCorrectValueItemsInBasketOnFirstLogin()
     });
     //This will only pass when you execution previous test case. Logindata method use emails recaived in prevoius test cases
@@ -41,11 +41,6 @@ describe('Registration test', () => {
         HomePagePO.assertCorrectValueItemsInBasketOnFirstLogin()
 
     });
-    it("Add all product to the basket", () => {
-        cy.get('//button[@aria-label="Add to Basket"]').each(($product) => {
-            wrap($product).click()
-        })
-    })
 
 });
 
