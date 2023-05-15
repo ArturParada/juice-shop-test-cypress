@@ -31,7 +31,9 @@ class LoginPage {
             });
 
             cy.wrap(newLoginData).as('newLoginData');
+
         });
+
     }
     loginDataFromJson() {
         cy.get('@newLoginData').then((newLoginData) => {
