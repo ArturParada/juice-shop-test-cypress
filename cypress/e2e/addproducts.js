@@ -11,6 +11,7 @@ describe('Registration test', () => {
 
     it("Registration, Login and Add all product to the basket", () => {
         HomePagePO.goHomePage()
+        HomePagePO.closePopUp()
         HomePagePO.goAccountPage()
         LoginPagePO.goToRegistartionPage()
         RegistrationPagePO.registerFormSubmission(correctPass, correctPass)

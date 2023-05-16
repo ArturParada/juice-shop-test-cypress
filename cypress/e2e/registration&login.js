@@ -8,12 +8,13 @@ import RegistrationPagePO from "../support/PageObject/RegistrationPagePO";
 describe('Registration and Login test', () => {
     const correctPass = "test123$"
     const wrongPass = "test"
-    const randomString = Math.random().toString(36).substring(2)
-    const email = "auto_" + randomString + randomString + "@gmail.com"
     let counter = 0
+
+
     describe("UI Tests", () => {
         beforeEach(() => {
             HomePagePO.goHomePage()
+            HomePagePO.closePopUp()
             HomePagePO.goAccountPage()
             counter++
             if (counter <= 2) {
@@ -45,6 +46,7 @@ describe('Registration and Login test', () => {
 
     })
     describe('API test', () => {
+
         it('Login Via API', () => {
             const userCredentials = {
                 "email": RegistrationPagePO.emailData[0],
@@ -54,7 +56,31 @@ describe('Registration and Login test', () => {
                 expect(response.status).to.eq(200)
             })
         });
-    });
+        it('Login Via API TOKEN', () => {
+            const userCredentials = {
+                "email": RegistrationPagePO.emailData[0],
+                "password": correctPass
+            }
+            cy.request("POST", 'http://localhost:3000/rest/user/login', userCredentials).its('body').then(body => {
+                const token = body.authentication.token
+                cy.wrap(token).as('userToken')
+                cy.log('@userToken')
 
+                //inject token to the browser
+                const userToken = cy.get("@userToken")
+                cy.visit('http://localhost:3000/', {
+                    onBeforeLoad(browser) {
+                        browser.localStorage.setItem("token", userToken)
+                    }
+                })
+                cy.wait(2000)
+                HomePagePO.closePopUp()
+                HomePagePO.assertCorrectValueItemsInBasketOnFirstLogin()
+            })
+
+        });
+    });
 });
+
+
 

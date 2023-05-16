@@ -16,6 +16,8 @@ class HomePage {
     }
     goHomePage() {
         cy.visit("/")
+    }
+    closePopUp() {
         this.popupBtn.click()
     }
 
